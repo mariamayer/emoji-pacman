@@ -31,6 +31,7 @@ Pacman.prototype.removePill = function(position){
   var selector = '[data-row=' + position[0] + ']' +
                    '[data-col=' + position[1] + ']';
   if($(selector).hasClass('fruit')){
+    $('.fruit-audio').get(0).play();
     fruit=true;
     setTimeout(function(){ fruit=false; }, 4000);
   }

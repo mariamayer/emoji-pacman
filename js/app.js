@@ -107,6 +107,7 @@ Game.prototype.updateScore = function() {
   $('.board .score').html(this.score);
   if($('.pill').length===0)
   this.drawPacmanWin();
+  console.log($('.pill').length);
 };
 
 Game.prototype.start = function() {
@@ -136,6 +137,7 @@ Game.prototype.stop = function() {
 };
 
 Game.prototype.drawPacmanDead = function(){
+  $('.dead-audio').get(0).play();
   $('.ghost img').remove();
   $('.pacman').empty();
   $('.info').append('Game Over <img src="img/loose-text.png" alt="">');
@@ -147,7 +149,7 @@ Game.prototype.clearPacman = function() {
   $('.pacman').removeClass('pacman').empty();
 };
 
-Pacman.prototype.drawPacmanWin = function(){
+Game.prototype.drawPacmanWin = function(){
   $('.ghost img').remove();
   $('.pacman').empty();
   $('.pacman').append('<img src="img/win.png" alt="">');

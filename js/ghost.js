@@ -127,6 +127,7 @@ Ghost.prototype.findPath = function () {
 			game=false;
 			this.stop();
 		}else{
+			$('.ghost-audio').get(0).play();
 			this.stop();
 		}
 	}else{
