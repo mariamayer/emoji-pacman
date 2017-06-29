@@ -1,4 +1,4 @@
-function Ghost(position, direction,name){
+function Ghost(position, direction, name, random){
 	this.grid=grid;
 	this.name=name;
 	this.position = position;
@@ -13,12 +13,14 @@ function Ghost(position, direction,name){
   this.cols=cols;
 	this.map=map;
 	this.distance=3;
+	this.random=random;
+	this.level=1;
 }
 
 Ghost.prototype.stop = function() {
-  if (this.intervalId) {
-    clearInterval(this.intervalId);
-    this.intervalId = undefined;
+  if (this.intervalGhost) {
+    clearInterval(this.intervalGhost);
+    this.intervalGhost = undefined;
   }
 };
 
@@ -120,7 +122,7 @@ Ghost.prototype.distanceToPacman = function(){
 Ghost.prototype.findPath = function () {
 	var path;
 
-	if(this.distance>=-1 && this.distance<1.2){
+	if(this.distance>=0 && this.distance<1.5){
 		if(!fruit){
 			game=false;
 			this.stop();
@@ -131,19 +133,23 @@ Ghost.prototype.findPath = function () {
 		var distanceToOpposite;
 		var finder = new PF.AStarFinder();
 		var gridBackup = this.grid.clone();
-		if(this.name!='grey' && this.distance>6){
+		if(!this.random && this.distance>6){
 
 			if(!fruit){
+
 				path = finder.findPath(this.position[0], this.position[1],this.randomPosx,this.randomPosy, gridBackup);
 				var distanceToRandom=this._getDistance(this.position,[this.randomPosx,this.randomPosy]);
 				if(distanceToRandom<3)
 				this.getRandomPos();
+
 			}else{
+
 				this.getOppositePos(pacmanPosition[0],pacmanPosition[1]);
 				path = finder.findPath(this.position[0], this.position[1],this.oppositePosx, this.oppositePosy, gridBackup);
 				distanceToOpposite=this._getDistance(this.position,[this.oppositePosx,this.oppositePosy]);
 				if(distanceToOpposite<2)
 				fruit=false;
+
 			}
 
 		}else{
@@ -187,6 +193,7 @@ Ghost.prototype.clearGhost = function() {
 
 Ghost.prototype.update = function() {
 	if(game){
+		this.distanceToPacman();
 		this.move();
 	  this.clearGhost();
 	  this.drawGhost();
@@ -197,9 +204,8 @@ Ghost.prototype.update = function() {
 Ghost.prototype.start=function(){
 	this.assignControlsToKeys();
 	this.getRandomPos();
-	this.intervalId2 = setInterval(this.distanceToPacman.bind(this),100);
-	if (!this.intervalId) {
-    this.intervalId = setInterval(this.update.bind(this,name),250);
+	if (!this.intervalGhost) {
+    this.intervalGhost = setInterval(this.update.bind(this,name),250);
   }
 };
 
@@ -211,27 +217,10 @@ Ghost.prototype.assignControlsToKeys = function() {
   $('body').on('keydown', function(e) {
     switch (e.keyCode) {
       case 80: // p pause
-        if (this.intervalId) {
+        if (this.intervalGhost) {
           this.stop();
-        } else {
-          this.start();
         }
         break;
     }
   }.bind(this));
 };
-
-//Init Ghost
-$(document).ready(function(){
-	var ghost1=new Ghost([2,7],'right','grey');
-	setTimeout(function(){ ghost1.start(); }, 1000);
-
-	var ghost3=new Ghost([2,10],'right','violet');
-	setTimeout(function(){ ghost3.start(); }, 2000);
-
-	var ghost2=new Ghost([2,6],'left','red');
-	setTimeout(function(){ ghost2.start(); }, 4000);
-
-	var ghost4=new Ghost([4,10],'left','brown');
-	setTimeout(function(){ ghost4.start(); }, 3000);
-});

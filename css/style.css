@@ -62,7 +62,7 @@
   animation-duration: .1s;
 }
 
-.ghost img{
+.cell img{
   width: 40px;
   height: 40px;
   position: absolute;
@@ -100,7 +100,10 @@
   text-align: center;
   font-size: 40px
 }
-
+.h3{
+  color:#ea82e5;
+  text-align: center;
+}
 .info img{
   width:60px;
 }
