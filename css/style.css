@@ -1,0 +1,143 @@
+@font-face {
+  font-family: 'Gameplay';
+  src: url('Gameplay.ttf');
+}
+.body{
+  background:#000;
+  font-family: 'Gameplay';
+  letter-spacing: 2px;
+}
+.h1{
+  color:#fff;
+  text-align: center;
+}
+.container{
+  position: relative;
+  width:800px;
+  margin:auto;
+  background: #000;
+  border: 40px solid #1a1ac7;
+}
+.cell{
+  width:40px;
+  height:40px;
+  display: inline-block;
+  position: relative;
+}
+.pill{
+  background: url(../img/pill.png) no-repeat;
+  background-size: 20px 20px;
+  background-position: center center;
+}
+.fruit{
+  background: url(../img/fruit.png) no-repeat;
+  background-size: 30px 30px;
+  background-position: center center;
+}
+.border{
+  width:40px;
+  height:40px;
+  display: inline-block;
+  background:#1a1ac7;
+}
+.pacman img{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+}
+.pacman .left{
+  -webkit-animation:left;
+  animation-duration: .1s;
+}
+.pacman .right{
+  -webkit-animation:right;
+  animation-duration: .1s;
+}
+.pacman .up{
+  -webkit-animation:up;
+  animation-duration: .1s;
+}
+.pacman .down{
+  -webkit-animation:down;
+  animation-duration: .1s;
+}
+
+.ghost img{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+}
+.ghost .left{
+  animation: left-one 300ms,
+               bounce 50ms;
+}
+.ghost .right{
+  animation: right-one 300ms,
+               bounce 50ms;
+}
+.ghost .up{
+  -webkit-animation:up-one;
+  animation-duration: .3s;
+}
+.ghost .down{
+  -webkit-animation:down-one;
+  animation-duration: .3s;
+}
+
+.board{
+  position: absolute;
+  left:0px;
+  width:10%;
+  background: #1a1ac7;
+  padding:20px;
+  margin:20px;
+  top:60px;
+  color:#fff;
+}
+
+.info{
+  color:#fdff00;
+  text-align: center;
+  font-size: 40px
+}
+
+.info img{
+  width:60px;
+}
+
+@keyframes right{
+    from {left:-20px}
+    to {left:20px}
+}
+@keyframes left{
+    from {left:20px}
+    to {left:-20px}
+}
+@keyframes up{
+    from {top:20px}
+    to {top:-20px}
+}
+@keyframes down{
+    from {top:-20px}
+    to {top:20px}
+}
+@keyframes right-one{
+    from {left:-20px;top:0}
+    to {left:20px;top:20}
+}
+@keyframes left-one{
+    from {left:20px;}
+    to {left:-20px;}
+}
+@keyframes up-one{
+    from {top:20px}
+    to {top:-20px}
+}
+@keyframes down-one{
+    from {top:-20px}
+    to {top:20px}
+}
+@keyframes bounce {
+    0%, 100% { top:0 }
+    50% { top:5px }
+}
