@@ -129,6 +129,10 @@ Game.prototype.start = function() {
   }
 };
 
+Game.prototype.reload = function(){
+  setTimeout(function(){ location.reload(); }, 2000);
+};
+
 Game.prototype.stop = function() {
   clearInterval(this.ghost.intervalGhost);
   this.ghost.intervalGhost = undefined;
@@ -143,6 +147,7 @@ Game.prototype.drawPacmanDead = function(){
   $('.info').append('Game Over <img src="img/loose-text.png" alt="">');
   $('.pacman').append('<img src="img/dead.png" alt="">');
   this.stop();
+  this.reload();
 };
 
 Game.prototype.clearPacman = function() {
@@ -155,6 +160,7 @@ Game.prototype.drawPacmanWin = function(){
   $('.pacman').append('<img src="img/win.png" alt="">');
   $('.info').append('You Win <img src="img/win-text.png" alt="">');
   this.stop();
+  this.reload();
 };
 
 
