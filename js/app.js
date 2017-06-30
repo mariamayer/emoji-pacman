@@ -107,7 +107,6 @@ Game.prototype.updateScore = function() {
   $('.board .score').html(this.score);
   if($('.pill').length===0)
   this.drawPacmanWin();
-  console.log($('.pill').length);
 };
 
 Game.prototype.start = function() {

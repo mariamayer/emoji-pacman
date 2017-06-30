@@ -189,7 +189,7 @@ Ghost.prototype.drawGhost = function() {
 };
 
 Ghost.prototype.clearGhost = function() {
-  $('.'+this.name).removeClass(this.name+' ghost').empty();
+  $('.'+this.name).removeClass(this.name+' ghost multiple').empty();
 };
 
 Ghost.prototype.update = function() {

@@ -62,6 +62,10 @@
   animation-duration: .1s;
 }
 
+.ghost img:nth-child(2){
+  left:20px;
+}
+
 .cell img{
   width: 40px;
   height: 40px;
