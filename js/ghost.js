@@ -121,21 +121,19 @@ Ghost.prototype.distanceToPacman = function(){
 
 Ghost.prototype.findPath = function () {
 	var path;
-
-	if(this.distance>=0 && this.distance<1.5){
-		if(!fruit){
+console.log(this.distance);
+	if(this.distance>=0 && this.distance<2 && !fruit){
 			game=false;
 			this.stop();
-		}else{
-			$('.ghost-audio').get(0).play();
-			this.stop();
-		}
+	}else if(this.distance>=0 && this.distance<1.2 && fruit){
+		$('.ghost-audio').get(0).play();
+		this.clearGhost();
+		this.stop();
 	}else{
 		var distanceToOpposite;
 		var finder = new PF.AStarFinder();
 		var gridBackup = this.grid.clone();
-		if(!this.random && this.distance>6){
-
+		if(!this.random && this.distance>5){
 			if(!fruit){
 
 				path = finder.findPath(this.position[0], this.position[1],this.randomPosx,this.randomPosy, gridBackup);
