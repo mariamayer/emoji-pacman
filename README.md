@@ -1,8 +1,7 @@
 # emoji-pacman
 
-============
 
-![Screenshot](http://imgur.com/a/uI6Dd)
+![Screenshot](http://i.imgur.com/mnF5tuZ.png)
 
 Emoji Pacman is game written in HTML5 + CSS3 + jQuery. This game uses Pathfindig.js for path-finding.
 
